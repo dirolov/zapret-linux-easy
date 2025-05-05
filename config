@@ -25,12 +25,13 @@ TPWS_OPT="
 "
 NFQWS_ENABLE=1
 NFQWS_PORTS_TCP=80,443
-NFQWS_PORTS_UDP=443,50000-50099
+NFQWS_PORTS_UDP=443,50000-50100
 NFQWS_TCP_PKT_OUT=9
 NFQWS_TCP_PKT_IN=3
 NFQWS_UDP_PKT_OUT=9
 NFQWS_UDP_PKT_IN=0
-NFQWS_OPT="--filter-tcp=80 --dpi-desync=fake,fakedsplit --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --hostlist-auto=/opt/zapret/autohosts.txt --hostlist-exclude=/opt/zapret/ignore.txt --new --filter-tcp=443 --hostlist=/opt/zapret/etc/youtube.txt --dpi-desync=fake,multidisorder --dpi-desync-split-pos=1,midsld --dpi-desync-repeats=11 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new --filter-tcp=443 --dpi-desync=fake,multidisorder --dpi-desync-split-pos=midsld --dpi-desync-repeats=6 --dpi-desync-fooling=badseq,md5sig --hostlist-auto=/opt/zapret/autohosts.txt --hostlist-exclude=/opt/zapret/ignore.txt --new --filter-udp=443 --hostlist=/opt/zapret/etc/youtube.txt --dpi-desync=fake --dpi-desync-repeats=11 --dpi-desync-fake-quic=/opt/zapret/etc/quic_initial_www_google_com.bin --new --filter-udp=443 --dpi-desync=fake --dpi-desync-repeats=11 --hostlist=/opt/zapret/autohosts.txt --hostlist-exclude=/opt/zapret/ignore.txt --new --filter-udp=50000-50099 --filter-l7=discord,stun --dpi-desync=fake"
+
+NFQWS_OPT="--filter-udp=443 --hostlist=/opt/zapret/autohosts.txt --hostlist-exclude=/opt/zapret/ignore.txt --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=/opt/zapret/etc/quic_initial_www_google_com.bin --new --filter-udp=50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-repeats=6 --new --filter-tcp=80 --hostlist-auto=/opt/zapret/autohosts.txt --hostlist-exclude=/opt/zapret/ignore.txt --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new --filter-tcp=443 --hostlist-auto=/opt/zapret/autohosts.txt --hostlist-exclude=/opt/zapret/ignore.txt --dpi-desync=fake,split --dpi-desync-autottl=5 --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-fake-tls=/opt/zapret/etc/tls_clienthello_www_google_com.bin"
 MODE_FILTER=none
 FLOWOFFLOAD=donttouch
 INIT_APPLY_FW=1

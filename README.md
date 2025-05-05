@@ -1,6 +1,6 @@
 # Однокнопочный zapret для Linux
 
-1. Скачайте архив [https://github.com/ImMALWARE/zapret-linux-easy/releases/download/2/zapret.zip](https://github.com/ImMALWARE/zapret-linux-easy/releases/download/2/zapret.zip)
+1. Скачайте архив [https://github.com/ImMALWARE/zapret-linux-easy/releases/download/3/zapret.zip](https://github.com/ImMALWARE/zapret-linux-easy/releases/download/3/zapret.zip)
 2. Распакуйте его
 3. **Убедитесь, что у вас установлены пакеты `iptables` и `ipset`! Если нет — установите. Если вы не знаете как, спросите у ChatGPT!**
 4. Откройте терминал в папке, куда архив был распакован
