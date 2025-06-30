@@ -1,13 +1,9 @@
-# zapret для Linux и Steam Deck
+# zapret для Linux
 
 1. Скачайте и распакуйте архив https://github.com/ImMALWARE/zapret-linux-easy/archive/refs/heads/main.zip (либо `git clone https://github.com/ImMALWARE/zapret-linux-easy && cd zapret-linux-easy`)
 2. **Убедитесь, что у вас установлены пакеты `iptables` и `ipset`! Если нет — установите. Если вы не знаете как, спросите у ChatGPT!**
 3. Откройте терминал в папке, куда архив был распакован
 4. `./install.sh`
-(для Steam Deck `./steamdeck.sh`)
-
-# Steam Deck
-Создастся файл `after_update.sh` на Рабочем столе. Его нужно будет запускать после каждого обновления ОС.
 
 # Управление
 ## Systemd
