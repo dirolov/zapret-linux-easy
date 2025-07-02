@@ -35,6 +35,25 @@ esac
 cp "./bins/$bin_dir/nfqws" /opt/zapret/system/
 chmod +x /opt/zapret/system/nfqws
 
+echo "Выберите тип firewall:"
+echo "1. iptables"
+echo "2. nftables"
+read -p "Введите номер (1 или 2): " choice
+case $choice in
+    1)
+        echo "iptables" > /opt/zapret/system/FWTYPE
+        echo "Тип firewall установлен: iptables"
+        ;;
+    2)
+        echo "nftables" > /opt/zapret/system/FWTYPE
+        echo "Тип firewall установлен: nftables"
+        ;;
+    *)
+        echo "Ошибка: Неверный выбор. Пожалуйста, выберите 1 или 2."
+        exit 1
+        ;;
+esac
+
 if command -v systemctl >/dev/null 2>&1 && [ -d /run/systemd ]; then
 
     cat <<EOF > /usr/lib/systemd/system/zapret.service
