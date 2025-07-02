@@ -1,7 +1,7 @@
 # zapret для Linux
 
 1. Скачайте и распакуйте архив https://github.com/ImMALWARE/zapret-linux-easy/archive/refs/heads/main.zip (либо `git clone https://github.com/ImMALWARE/zapret-linux-easy && cd zapret-linux-easy`)
-2. **Убедитесь, что у вас установлены пакеты `iptables` и `ipset`! Если нет — установите. Если вы не знаете как, спросите у ChatGPT!**
+2. **Убедитесь, что у вас установлены пакеты `curl`, `iptables` и `ipset` (для FWTYPE=iptables) или `curl` и `nftables` (для FWTYPE=nftables)! Если нет — установите. Если вы не знаете как, спросите у ChatGPT!**
 3. Откройте терминал в папке, куда архив был распакован
 4. `./install.sh`
 
@@ -29,6 +29,8 @@
 Не работает незаблокированный сайт? Добавьте его домен в `/opt/zapret/ignore.txt`
 
 Конфиг можно изменить в `/opt/zapret/config.txt` (перезапустите zapret после изменения)
+
+Тип firewall-а можно изменить в `/opt/zapret/system/FWTYPE` (перезапустите zapret после изменения)
 
 Для проверки текущего конфига вы можете использовать `/opt/zapret/check.sh`
 
