@@ -51,7 +51,10 @@ fi
 echo "Configuring iptables for TCP ports: $TCP_PORTS"
 echo "Configuring iptables for UDP ports: $UDP_PORTS"
 
-if [ "$FWTYPE" = "nftables" ]; then
+if [ "$FWTYPE" = "iptables" ]; then
+    iptables -t mangle -F PREROUTING
+    iptables -t mangle -F POSTROUTING
+elif [ "$FWTYPE" = "nftables" ]; then
     nft add table inet zapret
     nft flush table inet zapret
     nft add chain inet zapret prerouting { type filter hook prerouting priority mangle \; }
