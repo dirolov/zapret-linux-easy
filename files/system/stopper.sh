@@ -29,6 +29,6 @@ if [ "$FWTYPE" = "iptables" ]; then
     iptables -t mangle -F PREROUTING
     iptables -t mangle -F POSTROUTING
 elif [ "$FWTYPE" = "nftables" ]; then
-    nft flush table inet zapret
-    nft delete table inet zapret
+    nft flush table inet zapret 2>/dev/null || true
+    nft delete table inet zapret 2>/dev/null || true
 fi
