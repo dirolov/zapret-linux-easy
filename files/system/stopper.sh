@@ -19,7 +19,7 @@ if [ -f /opt/zapret/system/FWTYPE ]; then
         echo "Ошибка: Неверное значение в файле FWTYPE."
         exit 1
     fi
-    echo "FWTYPE=$FWTYPE"
+    echo "FWTYPE=$FWTYPE" 2>/dev/null
 else
     echo "Ошибка: Файл /opt/zapret/system/FWTYPE не найден."
     exit 1
