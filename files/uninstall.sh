@@ -7,5 +7,9 @@ fi
 
 systemctl disable zapret
 systemctl stop zapret
-rm /usr/lib/systemd/system/zapret.service
-echo "Теперь можно удалять папку /opt/zapret"
+rc-update del zapret
+rc-service zapret stop
+rm -f /usr/lib/systemd/system/zapret.service
+rm -f /etc/init.d/zapret
+echo "Успешно удалено."
+rm -rf /opt/zapret
