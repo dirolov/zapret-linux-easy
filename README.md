@@ -1,9 +1,8 @@
 # zapret для Linux
 
-1. Скачайте и распакуйте архив https://github.com/ImMALWARE/zapret-linux-easy/archive/refs/heads/main.zip (либо `git clone https://github.com/ImMALWARE/zapret-linux-easy && cd zapret-linux-easy`)
-2. **Убедитесь, что у вас установлены пакеты `curl`, `iptables` и `ipset` (для FWTYPE=iptables) или `curl` и `nftables` (для FWTYPE=nftables)! Если нет — установите. Если вы не знаете как, спросите у ChatGPT!**
-3. Откройте терминал в папке, куда архив был распакован
-4. `./install.sh`
+1. `git clone https://github.com/dirolov/zapret-linux-easy && cd zapret-linux-easy`)
+2. **Убедитесь, что у вас установлены пакеты `curl`, `iptables` и `ipset` (для FWTYPE=iptables) или `curl` и `nftables` (для FWTYPE=nftables)!
+3. `./install.sh`
 
 # Управление
 ## Systemd
