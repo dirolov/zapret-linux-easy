@@ -55,8 +55,10 @@ case $choice in
 esac
 
 if command -v systemctl >/dev/null 2>&1 && [ -d /run/systemd ]; then
+bash $PWD/scripts/systemd.sh
 
 elif command -v openrc-run >/dev/null 2>&1 || [ -d /run/openrc ]; then
+bash $PWD/scripts/openrc.sh
     
 else
     echo "Не удалось определить систему инициализации (systemd или OpenRC не найдены)."
