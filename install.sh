@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$(id -u)" -ne 0 ]; then
     exec sudo "$0" "$@"
@@ -38,7 +38,7 @@ chmod +x /opt/zapret/system/nfqws
 echo "Выберите тип firewall:"
 echo "1. iptables"
 echo "2. nftables"
-read -p "Введите номер (1 или 2): " choice
+read -rp "Введите номер (1 или 2): " choice
 case $choice in
     1)
         echo "iptables" > /opt/zapret/system/FWTYPE
@@ -55,12 +55,18 @@ case $choice in
 esac
 
 if command -v systemctl >/dev/null 2>&1 && [ -d /run/systemd ]; then
-bash $PWD/files/scripts/systemd.sh
+bash "$PWD"/files/scripts/systemd.sh
 
-elif command -v openrc-run >/dev/null 2>&1 || [ -d /run/openrc ]; then
-bash $PWD/files/scripts/openrc.sh
+elif command -v openrc-run >/dev/null 2>&1 && [ -d /run/openrc ]; then
+bash "$PWD"/files/scripts/openrc.sh
+
+elif command -v runit >/dev/null 2>&1 && [ -d /run/runit ]; then
+bash "$PWD"/files/scripts/runit-artix.sh
+
+elif command -v runit >/dev/null 2>&1 && [ -d /var/service ]; then
+bash "$PWD"/files/scripts/runit.sh 
     
 else
-    echo "Не удалось определить систему инициализации (systemd или OpenRC не найдены)."
+    echo "Не удалось определить систему инициализации (systemd, OpenRC или runit не найдены)."
     exit 1
 fi

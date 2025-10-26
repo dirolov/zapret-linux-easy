@@ -18,6 +18,5 @@ WantedBy=multi-user.target
 EOF
 
     systemctl daemon-reload
-    systemctl start zapret
-    systemctl enable zapret
+    systemctl enable --now zapret
     echo "Установка завершена. zapret теперь в папке /opt/zapret, папку в Загрузках можно удалить."
