@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if [ "$(id -u)" -ne 0 ]; then
-    exec sudo "$0" "$@"
+    exec sudo "$0" "$@" || exec doas "$0" "$@"
     exit 1
 fi
 
-rm /usr/lib/systemd/system/zapret.service > /dev/null 2>&1
+rm -f /usr/lib/systemd/system/zapret.service > /dev/null 2>&1
 rm -rf /opt/zapret > /dev/null 2>&1
 killall nfqws > /dev/null 2>&1
 
