@@ -16,5 +16,10 @@ rm -f /etc/init.d/zapret
 sv down zapret
 rm -rf /etc/runit/sv/zapret
 rm -rf /run/runit/service/zapret
+
+dinitctl stop zapret
+dinitctl disable zapret
+rm -f /etc/dinit.d/zapret
+
 echo "Успешно удалено."
 rm -rf /opt/zapret
