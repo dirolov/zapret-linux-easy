@@ -64,7 +64,10 @@ elif command -v runit >/dev/null 2>&1 && [ -d /run/runit ]; then
 bash "$PWD"/files/scripts/runit-artix.sh
 
 elif command -v runit >/dev/null 2>&1 && [ -d /var/service ]; then
-bash "$PWD"/files/scripts/runit.sh 
+bash "$PWD"/files/scripts/runit.sh
+
+elif command -v dinitctl >/dev/null 2>&1 && [ -d /etc/dinit.d ]; then
+bash "$PWD"/files/scripts/dinit.sh
     
 else
     echo "Не удалось определить систему инициализации (systemd, OpenRC или runit не найдены)."
