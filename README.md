@@ -1,11 +1,11 @@
-# TODO:
+## TODO:
 1. Добавить поддержку runit, s6, dinit
 2. Рефакторинг README
 
 # zapret для Linux
 
-1. `git clone https://github.com/dirolov/zapret-linux-easy && cd zapret-linux-easy`)
-2. **Убедитесь, что у вас установлены пакеты `curl`, `iptables` и `ipset` (для FWTYPE=iptables) или `curl` и `nftables` (для FWTYPE=nftables)!**
+1. `git clone https://github.com/dirolov/zapret-linux-easy && cd zapret-linux-easy`
+2. **Установите зависимости: `bash`, `curl`; `iptables` и `ipset` (для FWTYPE=iptables) или `nftables` (для FWTYPE=nftables)!**
 3. `./install.sh`
 
 # Управление
