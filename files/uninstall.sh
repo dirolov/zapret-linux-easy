@@ -8,4 +8,4 @@ fi
 systemctl disable zapret
 systemctl stop zapret
 rm /usr/lib/systemd/system/zapret.service
-echo "Теперь можно удалять папку /opt/zapret"
+echo "Now you can delete folder /opt/zapret"

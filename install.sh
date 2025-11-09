@@ -27,7 +27,7 @@ case "$arch" in
         bin_dir="arm64"
         ;;
     *)
-        echo "Неизвестная архитектура: $arch"
+        echo "Unknown architecture: $arch"
         exit 1
         ;;
 esac
@@ -35,21 +35,21 @@ esac
 cp "./bins/$bin_dir/nfqws" /opt/zapret/system/
 chmod +x /opt/zapret/system/nfqws
 
-echo "Выберите тип firewall:"
+echo "Select firewall type:"
 echo "1. iptables"
 echo "2. nftables"
-read -p "Введите номер (1 или 2): " choice
+read -p "Enter number (1 or 2): " choice
 case $choice in
     1)
         echo "iptables" > /opt/zapret/system/FWTYPE
-        echo "Тип firewall установлен: iptables"
+        echo "Firewall type set: iptables"
         ;;
     2)
         echo "nftables" > /opt/zapret/system/FWTYPE
-        echo "Тип firewall установлен: nftables"
+        echo "Firewall type set: nftables"
         ;;
     *)
-        echo "Ошибка: Неверный выбор. Пожалуйста, выберите 1 или 2."
+        echo "Error: Invalid selection. Please choose 1 or 2."
         exit 1
         ;;
 esac
@@ -76,7 +76,7 @@ EOF
     systemctl daemon-reload
     systemctl start zapret
     systemctl enable zapret
-    echo "Установка завершена. zapret теперь в папке /opt/zapret, папку в Загрузках можно удалить."
+    echo "Installation complete. zapret is now in the /opt/zapret folder, you can delete the folder in Downloads."
 
 elif command -v openrc-run >/dev/null 2>&1 || [ -d /run/openrc ]; then
     cat <<EOF > /etc/init.d/zapret
@@ -99,8 +99,8 @@ EOF
     chmod +x /etc/init.d/zapret
     rc-update add zapret default
     rc-service zapret start
-    echo "Установка завершена. zapret теперь в папке /opt/zapret, папку в Загрузках можно удалить."
+    echo "Installation complete. zapret is now in the /opt/zapret folder, you can delete the folder in Downloads."
 else
-    echo "Не удалось определить систему инициализации (systemd или OpenRC не найдены)."
+    echo "Failed to detect init system (systemd or OpenRC not found)."
     exit 1
 fi

@@ -1,0 +1,48 @@
+# zapret for Linux
+[README на русском](https://github.com/ImMALWARE/zapret-linux-easy/blob/main/README.md)
+
+1. Download and unpack the archive https://github.com/ImMALWARE/zapret-linux-easy/archive/refs/heads/main.zip (or `git clone https://github.com/ImMALWARE/zapret-linux-easy && cd zapret-linux-easy`)
+2. **Make sure you have the `curl`, `iptables`, and `ipset` packages installed (for FWTYPE=iptables), or `curl` and `nftables` (for FWTYPE=nftables)! If not, install them. If you don't know how, ask ChatGPT!**
+3. Open a terminal in the folder where the archive was unpacked.
+4. `./install.sh`
+
+# Management
+## Systemd
+Stop: `sudo systemctl stop zapret`
+
+Start: `sudo systemctl start zapret`
+
+Disable autostart (enabled by default): `sudo systemctl disable zapret`
+
+Enable autostart: `sudo systemctl enable zapret`
+## OpenRC
+
+Stop: `sudo rc-service zapret stop`
+
+Start: `sudo rc-service zapret start`
+
+Enable autostart: `sudo rc-update add zapret`
+
+Disable autostart: `sudo rc-update del zapret`
+# Domain Lists
+Is a blocked site not working? Try adding its domain to `/opt/zapret/autohosts.txt`
+
+Is an unblocked site not working? Add its domain to `/opt/zapret/ignore.txt`
+
+The config can be changed in `/opt/zapret/config.txt` (restart zapret after making changes)
+
+The firewall type can be changed in `/opt/zapret/system/FWTYPE` (restart zapret after making changes)
+
+To check the current config, you can use `/opt/zapret/check.sh`
+
+# Variables in config.txt
+
+`{hosts}` — Substitutes the path to `autohosts.txt`
+
+`{ignore}` — Substitutes the path to `ignore.txt`
+
+`{youtube}` — Substitutes the path to `youtube.txt`
+
+`{quicgoogle}` — Substitutes the path to `system/quic_initial_www_google_com.bin`
+
+`{tlsgoogle}` — Substitutes the path to `system/tls_clienthello_www_google_com.bin`
