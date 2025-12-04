@@ -4,6 +4,8 @@ type = process
 restart = true
 depends-on = network.target
 logfile = /var/log/dinit/zapret.log
+one-shot = true
+stay-active = true
 command = /opt/zapret/system/starter.sh
 stop-command = /opt/zapret/system/stopper.sh
 EOF
