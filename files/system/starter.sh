@@ -105,4 +105,8 @@ if [ -n "$UDP_PORTS" ]; then
 fi
 fi
 
-/opt/zapret/system/nfqws --qnum=200 --uid=0:0 $ARGS &
+if [ "$1" = "--foreground" ]; then
+    /opt/zapret/system/nfqws --qnum=200 --uid=0:0 $ARGS
+else
+    /opt/zapret/system/nfqws --qnum=200 --uid=0:0 $ARGS &
+fi
