@@ -14,6 +14,8 @@ killall nfqws > /dev/null 2>&1
 mkdir -p /opt/zapret
 cp -r ./files/* /opt/zapret/
 
+chmod +x /opt/zapret/system/starter.sh
+chmod +x /opt/zapret/system/stopper.sh
 arch=$(uname -m)
 case "$arch" in
     x86_64)
@@ -104,16 +106,17 @@ EOF
     echo "Installation complete. zapret is now in the /opt/zapret folder, you can delete the folder in Downloads."
 elif command -v sv >/dev/null 2>&1 && [ -d /run/runit ]; then
     mkdir -p /etc/sv/zapret/
+    mkdir -p /var/log/zapret
     cat <<EOF > /etc/sv/zapret/run
 #!/bin/sh
 exec 2>&1
-exec /opt/zapret/system/starter.sh
+exec /opt/zapret/system/starter.sh --foreground
 EOF
     chmod +x /etc/sv/zapret/run
     mkdir -p /etc/sv/zapret/log
     cat <<EOF > /etc/sv/zapret/log/run
 #!/bin/sh
-exec vlogger -t zapret -p daemon
+exec svlogd -tt /var/log/zapret
 EOF
     chmod +x /etc/sv/zapret/log/run
     cat <<EOF > /etc/sv/zapret/finish
