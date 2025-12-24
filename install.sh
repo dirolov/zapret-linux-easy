@@ -5,10 +5,12 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
+rc-update del zapret > /dev/null 2>&1
 rm /usr/lib/systemd/system/zapret.service > /dev/null 2>&1
-rm -rf /opt/zapret > /dev/null 2>&1
+rm /etc/init.d/zapret > /dev/null 2>&1
 rm -rf /etc/sv/zapret > /dev/null 2>&1
 rm -rf /var/service/zapret > /dev/null 2>&1
+rm -rf /opt/zapret > /dev/null 2>&1
 killall nfqws > /dev/null 2>&1
 
 mkdir -p /opt/zapret
