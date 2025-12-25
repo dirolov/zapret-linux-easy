@@ -39,6 +39,8 @@
 
 `{hosts}` — подставит путь к `autohosts.txt`
 
+`{ipset}` — подставит путь к `ipset.txt`
+
 `{ignore}` — подставит путь к `ignore.txt`
 
 `{youtube}` — подставить путь к `youtube.txt`

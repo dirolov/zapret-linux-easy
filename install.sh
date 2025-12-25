@@ -32,6 +32,9 @@ case "$arch" in
     aarch64)
         bin_dir="arm64"
         ;;
+    riscv64)
+        bin_dir="riscv64"
+        ;;
     *)
         echo "Unknown architecture: $arch"
         exit 1
@@ -59,6 +62,18 @@ case $choice in
         exit 1
         ;;
 esac
+
+available_ifaces=$(ls /sys/class/net 2>/dev/null | tr '\n' ' ')
+
+echo ""
+echo "Available interfaces: $available_ifaces"
+echo "Enter WAN interface(s) space separeted (e.g. eth0). Leave empty to apply to ALL interfaces (default):"
+read -p "> " wan_iface
+echo "$wan_iface" > /opt/zapret/system/IFACE_WAN
+
+echo "Enter LAN interface(s) space separeted (e.g. br-lan). Leave empty to apply to ALL interfaces (default):"
+read -p "> " lan_iface
+echo "$lan_iface" > /opt/zapret/system/IFACE_LAN
 
 if command -v systemctl >/dev/null 2>&1 && [ -d /run/systemd ]; then
 

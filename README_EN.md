@@ -39,6 +39,8 @@ To check the current config, you can use `/opt/zapret/check.sh`
 
 `{hosts}` — Substitutes the path to `autohosts.txt`
 
+`{ipset}` — Substitutes the path to `ipset.txt`
+
 `{ignore}` — Substitutes the path to `ignore.txt`
 
 `{youtube}` — Substitutes the path to `youtube.txt`
