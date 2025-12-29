@@ -16,12 +16,12 @@ if [ -f /opt/zapret/system/FWTYPE ]; then
     elif [ "$content" = "nftables" ]; then
         FWTYPE=nftables
     else
-        echo "Ошибка: Неверное значение в файле FWTYPE."
+        echo "Error: invalid value in file FWTYPE."
         exit 1
     fi
     echo "FWTYPE=$FWTYPE" 2>/dev/null
 else
-    echo "Ошибка: Файл /opt/zapret/system/FWTYPE не найден."
+    echo "Error: File /opt/zapret/system/FWTYPE not found."
     exit 1
 fi
 

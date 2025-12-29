@@ -1,0 +1,36 @@
+name: Build nfqws for RISC-V
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_riscv64:
+    runs-on: ubuntu-latest
+    name: Build on riscv64
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build inside QEMU
+        uses: uraimo/run-on-arch-action@v2
+        with:
+          arch: riscv64
+          distro: ubuntu22.04
+          githubToken: ${{ github.token }}
+
+          run: |
+            export DEBIAN_FRONTEND=noninteractive
+            apt-get update -y
+            apt-get install -y build-essential git pkg-config \
+              libnetfilter-queue-dev libnetfilter-conntrack-dev \
+              libcap-dev zlib1g-dev libmnl-dev
+
+            git clone --depth=1 https://github.com/bol-van/zapret.git zapret
+            cd zapret/nfq
+            make
+            cp nfqws /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/nfqws_riscv64
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfqws-riscv64
+          path: nfqws_riscv64

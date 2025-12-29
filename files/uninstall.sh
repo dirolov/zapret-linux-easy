@@ -7,19 +7,5 @@ fi
 
 systemctl disable zapret
 systemctl stop zapret
-rm -f /usr/lib/systemd/system/zapret.service
-
-rc-update del zapret
-rc-service zapret stop
-rm -f /etc/init.d/zapret
-
-sv down zapret
-rm -rf /etc/runit/sv/zapret
-rm -rf /run/runit/service/zapret
-
-dinitctl stop zapret
-dinitctl disable zapret
-rm -f /etc/dinit.d/zapret
-
-echo "Успешно удалено."
-rm -rf /opt/zapret
+rm /usr/lib/systemd/system/zapret.service
+echo "Now you can delete folder /opt/zapret"

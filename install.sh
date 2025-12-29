@@ -12,6 +12,8 @@ killall nfqws > /dev/null 2>&1
 mkdir -p /opt/zapret
 cp -r ./files/* /opt/zapret/
 
+chmod +x /opt/zapret/system/starter.sh
+chmod +x /opt/zapret/system/stopper.sh
 arch=$(uname -m)
 case "$arch" in
     x86_64)
@@ -26,8 +28,11 @@ case "$arch" in
     aarch64)
         bin_dir="arm64"
         ;;
+    riscv64)
+        bin_dir="riscv64"
+        ;;
     *)
-        echo "Неизвестная архитектура: $arch"
+        echo "Unknown architecture: $arch"
         exit 1
         ;;
 esac
@@ -35,24 +40,36 @@ esac
 cp "./bins/$bin_dir/nfqws" /opt/zapret/system/
 chmod +x /opt/zapret/system/nfqws
 
-echo "Выберите тип firewall:"
+echo "Select firewall type:"
 echo "1. iptables"
 echo "2. nftables"
 read -rp "Введите номер (1 или 2): " choice
 case $choice in
     1)
         echo "iptables" > /opt/zapret/system/FWTYPE
-        echo "Тип firewall установлен: iptables"
+        echo "Firewall type set: iptables"
         ;;
     2)
         echo "nftables" > /opt/zapret/system/FWTYPE
-        echo "Тип firewall установлен: nftables"
+        echo "Firewall type set: nftables"
         ;;
     *)
-        echo "Ошибка: Неверный выбор. Пожалуйста, выберите 1 или 2."
+        echo "Error: Invalid selection. Please choose 1 or 2."
         exit 1
         ;;
 esac
+
+available_ifaces=$(ls /sys/class/net 2>/dev/null | tr '\n' ' ')
+
+echo ""
+echo "Available interfaces: $available_ifaces"
+echo "Enter WAN interface(s) space separeted (e.g. eth0). Leave empty to apply to ALL interfaces (default):"
+read -p "> " wan_iface
+echo "$wan_iface" > /opt/zapret/system/IFACE_WAN
+
+echo "Enter LAN interface(s) space separeted (e.g. br-lan). Leave empty to apply to ALL interfaces (default):"
+read -p "> " lan_iface
+echo "$lan_iface" > /opt/zapret/system/IFACE_LAN
 
 if command -v systemctl >/dev/null 2>&1 && [ -d /run/systemd ]; then
 bash "$PWD"/files/scripts/systemd.sh
